@@ -84,7 +84,9 @@ export default {
   		//判定是否做过
   		jg:'',
   		//第一题页面添加一个遮罩层，点击确定后遮罩消失可以开始答题
-  		popupShow:false
+  		popupShow:false,
+  		// //每个题目前面的序号A,B,C,D
+  		// order:['A','B','C','D','E','F','G','H','I','J','K']
   	}
   },
   methods:{
@@ -206,9 +208,10 @@ export default {
 				padding:.13rem 0 .1rem
 			ul
 				li
-					height:.48rem
+					// height:.48rem
 					font-size:.17rem
 					display:flex
+					margin:.1rem
 					.option-ico
 						position:relative
 						margin:0 .15rem 0 .2rem	

@@ -23,8 +23,8 @@
     			<div class="right" @click="ptrs=true">{{obj.ptrs?obj.ptrs:'请选择'}}</div>
     		</li>
     	</ul>
-    	<p style="text-indent: 2em;line-height: 1.4">
-    		学校在江北龙头寺火车站（南北广场）、沙坪坝火车西站、菜园坝火车站、重庆理工大学花溪校区大门设立迎新接待站。在其他各车站或飞机场到达的新生可转乘轨道交通等交通工具到就近的任意一个火车站或花溪校区大门接待站，由学校迎新专车送往两江校区。（请注意入学须知上提示的接站时间）
+    	<p style="text-indent: 2em;line-height: 1.4;padding-left: .05rem">
+    		学校将在重庆北站南北广场（龙头寺火车站）、重庆西站（沙坪坝）、菜园坝火车站、重庆理工大学花溪校区大门设立迎新接待站。在其他各车站或飞机场到达的新生可转乘轨道交通等交通工具到就近的任意一个火车站或花溪校区大门接待站，由学校迎新专车送往两江校区。（请注意入学须知上提示的接站时间）
     	</p>
     	<div class="save" @click="handleSave">保存</div>
     	<div class="success" v-show="show">操作成功</div>
