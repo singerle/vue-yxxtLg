@@ -160,7 +160,7 @@ export default {
       logo: 'this.src="' + require('./pic.png') + '"',
     	//理工
       gdArr1: [{name: '校园VR',path: 'http://720yun.com/t/x77yp9e447hao9w803',logo: 'static/student-index-pictures/xyvr@2x.png'},
-        {name: '校园文化',path: 'https://mp.weixin.qq.com/mp/homepage?__biz=MzI5MjA5NDU3MA==&hid=3&sn=a5b1e84ad75b4806199815957a64ae3a&uin=&key=&devicetype=Windows',logo: 'static/student-index-pictures/xywh@2x.png'},
+        {name: '校园文化',path: 'https://mp.weixin.qq.com/mp/homepage?__biz=MzI5MjA5NDU3MA==&hid=8&sn=1c896f1566e9b6635805ba98955d85b9&scene=18#wechat_redirect',logo: 'static/student-index-pictures/xywh@2x.png'},
         {name: '校园生活',path: 'https://mp.weixin.qq.com/mp/homepage?__biz=MzI5MjA5NDU3MA==&hid=7&sn=707ffe76916b370895a3348932cae8db&scene',logo: 'static/student-index-pictures/xyxx@2x.png'},
         {name: '校园安全',path: 'https://mp.weixin.qq.com/mp/homepage?__biz=MzI5MjA5NDU3MA%3D%3D&hid=15&sn=896dafbc4b2a0be6a168700ee97baa16',logo: 'static/student-index-pictures/whcp@2x.png'}],
       gdArr: [{name: '迎新志愿者报名',path: 'http://cn.mikecrm.com/x422BLo',logo: 'static/student-index-pictures/jgbbm@2x.png'},

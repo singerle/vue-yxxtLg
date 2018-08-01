@@ -123,7 +123,7 @@ export default {
         text: '加载中...',
         spinnerType: 'fading-circle'
       })
-      var i = 0
+      // var i = 0
       DormConfirm(this.item.userId).then(res => {
         Indicator.close()
         res = res.data
