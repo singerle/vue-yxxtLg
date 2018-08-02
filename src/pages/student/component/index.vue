@@ -85,7 +85,7 @@
     			<p>{{item.eaaName}}</p>
     		</li>
     	</ul>
-    	<ul class="app-list app-list-href" v-show="type=='left'">
+<!--     	<ul class="app-list app-list-href" v-show="type=='left'">
         <div style="margin: .11rem 0;padding-left:0.05rem;width: 100%">以下环节自愿选择完成</div>
     		<div class="app-list-content" v-show="showHref">
     			<span class="app-list-ts">请先完成入学准备后解锁</span>
@@ -95,11 +95,19 @@
     		</li>
     	</ul>
       <ul class="app-list app-list-href" v-show="type=='left'">
-       <!-- <div style="margin: .11rem 0;padding-left:0.05rem;width: 100%">以下环节自愿选择完成</div> -->
+       <div style="margin: .11rem 0;padding-left:0.05rem;width: 100%">以下环节自愿选择完成</div>
        <div class="app-list-content" v-show="showHref">
           <span class="app-list-ts">请先完成入学准备后解锁</span>
         </div>
         <li v-for="(item,i) in gdArr1" @click="jump(item.path)" :style="{'background-image':'url('+item.logo+')','background-size': 'cover'}">
+          <p>{{item.name}}</p>
+        </li> -->
+      <ul class="app-list app-list-href" v-show="type=='left'">
+       <div style="margin: .11rem 0;padding-left:0.05rem;width: 100%">以下环节自愿选择完成</div>
+       <div class="app-list-content" v-show="showHref">
+          <span class="app-list-ts">请先完成入学准备后解锁</span>
+        </div>
+        <li v-for="(item,i) in gdArr2" @click="jump(item.path)" :style="{'background-image':'url('+item.logo+')','background-size': 'cover'}">
           <p>{{item.name}}</p>
         </li>
       </ul>
@@ -165,7 +173,14 @@ export default {
         {name: '校园安全',path: 'https://mp.weixin.qq.com/mp/homepage?__biz=MzI5MjA5NDU3MA%3D%3D&hid=15&sn=896dafbc4b2a0be6a168700ee97baa16',logo: 'static/student-index-pictures/whcp@2x.png'}],
       gdArr: [{name: '迎新志愿者报名',path: 'http://cn.mikecrm.com/x422BLo',logo: 'static/student-index-pictures/jgbbm@2x.png'},
       {name: '通讯连报名',path: 'http://cn.mikecrm.com/cQhZeEo',logo: 'static/student-index-pictures/jgbbm@2x.png'},
-      {name: '教改班报名',path: 'http://jgbbm.cqut.edu.cn/',logo: 'static/student-index-pictures/jgbbm@2x.png'}]
+      {name: '教改班报名',path: 'http://jgbbm.cqut.edu.cn/',logo: 'static/student-index-pictures/jgbbm@2x.png'}],
+      //gdArr2是gdArr和gdArr1合并
+      gdArr2: [{name: '迎新志愿者报名',path: 'http://cn.mikecrm.com/x422BLo',logo: 'static/student-index-pictures/jgbbm@2x.png'},
+      {name: '通讯连报名',path: 'http://cn.mikecrm.com/cQhZeEo',logo: 'static/student-index-pictures/jgbbm@2x.png'},
+      {name: '教改班报名',path: 'http://jgbbm.cqut.edu.cn/',logo: 'static/student-index-pictures/jgbbm@2x.png'},{name: '校园VR',path: 'http://720yun.com/t/x77yp9e447hao9w803',logo: 'static/student-index-pictures/xyvr@2x.png'},
+        {name: '校园文化',path: 'https://mp.weixin.qq.com/mp/homepage?__biz=MzI5MjA5NDU3MA==&hid=8&sn=1c896f1566e9b6635805ba98955d85b9&scene=18#wechat_redirect',logo: 'static/student-index-pictures/xywh@2x.png'},
+        {name: '校园生活',path: 'https://mp.weixin.qq.com/mp/homepage?__biz=MzI5MjA5NDU3MA==&hid=7&sn=707ffe76916b370895a3348932cae8db&scene',logo: 'static/student-index-pictures/xyxx@2x.png'},
+        {name: '校园安全',path: 'https://mp.weixin.qq.com/mp/homepage?__biz=MzI5MjA5NDU3MA%3D%3D&hid=15&sn=896dafbc4b2a0be6a168700ee97baa16',logo: 'static/student-index-pictures/whcp@2x.png'}]
 
     	// gdArr: [{name: '校园文化',path: 'http://mp.weixin.qq.com/mp/homepage?__biz=MzI5MjA5NDU3MA==&hid=7&sn=707ffe76916b370895a3348932cae8db&scene',logo: 'static/student-index-pictures/xywh@2x.png'},{name: '校园学习',path: 'https://mp.weixin.qq.com/mp/homepage?__biz=MzI5MjA5NDU3MA==&hid=2&sn=2bd67be331c5b787441df10b8906115a&uin=&key=&devicetype=Windows',logo: 'static/student-index-pictures/xyxx@2x.png'},{name: '两江直播间',path: 'https://mp.weixin.qq.com/mp/homepage?__biz=MzI5MjA5NDU3MA==&hid=1&sn=a0309ab99815a0e832bb1c030cce434f&uin=&key=&devicetype=Windows+7&version=6204014f&lang=zh_CN&winzoom=1',logo: 'static/student-index-pictures/ljzbj@2x.png'},{name: '文化产品',path: 'https://mp.weixin.qq.com/mp/homepage?__biz=MzI5MjA5NDU3MA==&hid=6&sn=09b288475b8d8269110385006082807a&uin=&key=&devicetype=Windows',logo: 'static/student-index-pictures/whcp@2x.png'},{name: '学长寄语',path: 'https://mp.weixin.qq.com/mp/homepage?__biz=MzI5MjA5NDU3MA==&hid=5&sn=38032617a4dae1c805791136ce373854&uin=&key=&devicetype=Windows+7&version=6204014f&lang=zh_CN&winzoom=1',logo: 'static/student-index-pictures/xzjy@2x.png'},{name: '迎新志愿者报名',path: 'http://cn.mikecrm.com/x422BLo',logo: 'static/student-index-pictures/yxzyzbm@2x.png'},{name: '军训师通讯连报名',path: 'http://cn.mikecrm.com/cQhZeEo',logo: 'static/student-index-pictures/jxstxlbm@2x.png'},{name: '教改班报名',path: 'http://jgbbm.cqut.edu.cn/',logo: 'static/student-index-pictures/jgbbm@2x.png'},
     	// 	{name: '校园VR',path: 'http://720yun.com/t/x77yp9e447hao9w803',logo: 'static/student-index-pictures/xyvr@2x.png'}]
