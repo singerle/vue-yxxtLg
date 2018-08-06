@@ -19,7 +19,7 @@
           <el-form :model="form" ref="form" :rules="rules"  label-width="120px" class="demo-ruleForm">
             <el-form-item label="应用名称" prop="enrollName">
               <el-row>
-                <el-col :span="11"><el-input type="text" v-model="form.enrollName" auto-complete="off"></el-input></el-col>
+                <el-col :span="11"><el-input type="text" v-model="form.enrollName" auto-complete="off" maxlength="12"></el-input></el-col>
                 <el-col :span="10" :offset="1"><span style="color:#999999">中英文数字，限12个字符内</span></el-col>
               </el-row>
             </el-form-item>
@@ -42,6 +42,7 @@
 </template>
 <script>
 import { delRuxueApp, fetchAppInfo,  fetchSiteAppInfo, editAPP, editSiteAPP } from 'oa/api/process/ruxue'
+import { reg } from 'oa/utils/dom'
 const SUCCESS_OK = '200'
 export default {
   data () {
@@ -60,7 +61,11 @@ export default {
         type: '0'
       },
       rules: {
-        enrollName: [{required: true, message: '应用名称不能为空', trigger: 'blur'}]
+        enrollName: [
+          {required: true, message: '应用名称不能为空', trigger: 'blur'},
+          { pattern: reg, message: '仅限中英文数字输入' },
+          { max: 12, message: '限12个字符内', trigger: 'blur' }
+        ]
       }
     }
   },

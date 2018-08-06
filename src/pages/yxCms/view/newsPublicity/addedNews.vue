@@ -152,7 +152,7 @@ const SUCCESS_OK = '200'
         console.info(editor)
         editor.enable(true)   // 实现达到上限字符可删除
         if (this.SurplusLengthNum === 4000){
-          editor.enable(false)   // 实现达到上限字符可删除
+          // editor.enable(false)   // 实现达到上限字符可删除
         }
       },
       // 图片上传之前调取的函数

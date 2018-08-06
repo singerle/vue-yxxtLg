@@ -5,11 +5,12 @@
       <el-row :gutter="20" style="padding-top: 10px;">
         <el-col :span="12">
           <div>
-            <el-form class="newsnameform">
-              <el-form-item label="应用名称" 
-              :rules="{ max: 12, message: '域名不能为空', trigger: 'blur' }" >
-                <el-input class="newstitleInput" v-model="headerTitle.appItem.enrollName"  :placeholder="headerTitle.appItem.enrollName" style="width: 30%;"></el-input>
-                <el-button type="primary" @click="changeName">修改应用名称</el-button>
+            <el-form class="newsnameform" :model="headerTitle" ref="headerTitle" label-width="100px" :rules="rules">
+              <el-form-item 
+                label="应用名称"
+                prop="appItem.enrollName">
+                <el-input class="newstitleInput" v-model="headerTitle.appItem.enrollName" :placeholder="headerTitle.appItem.enrollName" style="width: 30%;" maxlength="12"></el-input>
+                <el-button type="primary" @click="changeName('headerTitle')">修改应用名称</el-button>
                 <span class="newstitleTip">中英文数字，限12个字符内</span>
               </el-form-item>
             </el-form>
@@ -39,10 +40,18 @@
 <script>
 import { mapMutations } from 'vuex'
 import { fetchAppInfo, editAPP, editSiteAPP, changeShow } from 'oa/api/process/ruxue'
+import { reg } from 'oa/utils/dom'
 export default {
   data () {
     return {
-      ruxueSiteState: ''
+      ruxueSiteState: '',
+      rules: {
+        'appItem.enrollName': [
+          { required: true,  message: '应用名称不能为空', trigger: 'blur'},
+          { pattern: reg, message: '仅限中英文数字输入', trigger: 'blur' },
+          { max: 12, message: '限12个字符内', trigger: 'blur' }
+        ]
+      }
     }
   },
   props: {
@@ -78,35 +87,42 @@ export default {
       })
     },
     // 输入框变化出发后台事件
-    changeName () {
-      this.ruxueSiteState = this.$store.getters.ruxueSiteState
-      if (this.ruxueSiteState === 1) {
-        // 入学配置 调用入学接口 只传前四个参数
-        editAPP (this.eaaLogicId, this.headerTitle.appItem.enrollName, '2', '2').then(res => {
-          res = res.data
-          if (res.state === '200') {
-            this.MessageSuccess('修改名称成功')
-            this.headerTitle.yxTitle = this.headerTitle.appItem.enrollName
-          } else {
-            this.MessageError(res.message)
+    changeName (formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.ruxueSiteState = this.$store.getters.ruxueSiteState
+          if (this.ruxueSiteState === 1) {
+            // 入学配置 调用入学接口 只传前四个参数
+            editAPP (this.eaaLogicId, this.headerTitle.appItem.enrollName, '2', '2').then(res => {
+              res = res.data
+              if (res.state === '200') {
+                this.MessageSuccess('修改名称成功')
+                this.headerTitle.yxTitle = this.headerTitle.appItem.enrollName
+              } else {
+                this.MessageError(res.message)
+              }
+            }).catch(() => {
+              this.MessageError()
+            })
+          } else if (this.ruxueSiteState === 3) {
+            // 现场配置 调用现场接口 只穿前四个参数
+            // 入学配置 调用入学接口 只传前四个参数
+            editSiteAPP (this.eaaLogicId, this.headerTitle.appItem.enrollName, '2', '2').then(res => {
+              res = res.data
+              if (res.state === '200') {
+                this.MessageSuccess('修改名称成功')
+              } else {
+                this.MessageError(res.message)
+              }
+            }).catch(() => {
+              this.MessageError()
+            })
           }
-        }).catch(() => {
-          this.MessageError()
-        })
-      } else if (this.ruxueSiteState === 3) {
-        // 现场配置 调用现场接口 只穿前四个参数
-        // 入学配置 调用入学接口 只传前四个参数
-        editSiteAPP (this.eaaLogicId, this.headerTitle.appItem.enrollName, '2', '2').then(res => {
-          res = res.data
-          if (res.state === '200') {
-            this.MessageSuccess('修改名称成功')
-          } else {
-            this.MessageError(res.message)
-          }
-        }).catch(() => {
-          this.MessageError()
-        })
-      }
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      })
     },
     // 教师端可见
     isShow () {

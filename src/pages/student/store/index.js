@@ -54,7 +54,7 @@ const store = new Vuex.Store({
 	actions:{
 	},
 	getters:{
-		getHjid:state => {
+		getHjid: state => {
 			return state.hjid
 		},
 		getqsxx: state => {

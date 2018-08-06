@@ -29,7 +29,7 @@ export default {
       return {
         page: '/newsPublicity/addedNews',
         headerTitle: {
-          title: '新闻公示',
+          title: '新闻公式',
           button: '新增',
           yxTitle: '新闻列表',
           // yinxin:'迎新',

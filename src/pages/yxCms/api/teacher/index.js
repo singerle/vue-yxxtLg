@@ -35,7 +35,7 @@ export function editTeacher(groupId, newName) {
   }
   data = qs.stringify(data)
   return fetch({
-    url: `${$HTTP}/enroll/roleManage/delete`,
+    url: `${$HTTP}/enroll/permission/updateGroup`,
     // url: 'https://dsn.apizza.net/mock/a36657f269d8bc38b9979c1bbf019699/manage/list',
     method: 'post',
     data

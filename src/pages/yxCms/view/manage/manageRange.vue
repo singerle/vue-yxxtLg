@@ -3,8 +3,8 @@
     <el-header class="header" height="35px">
       <span class="title header-item h-left">权限范围</span>
       <el-breadcrumb class="crumbs" separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item>查看统计权限</el-breadcrumb-item>
-        <el-breadcrumb-item>{{manage.groupName}}</el-breadcrumb-item>
+        <el-breadcrumb-item to="/manage/index/list">查看统计权限</el-breadcrumb-item>
+        <el-breadcrumb-item to="/manage/index/list">{{manage.groupName}}</el-breadcrumb-item>
         <el-breadcrumb-item>权限范围</el-breadcrumb-item>
       </el-breadcrumb>
     </el-header>

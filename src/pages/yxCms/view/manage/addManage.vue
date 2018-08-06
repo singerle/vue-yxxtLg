@@ -3,7 +3,7 @@
     <header class="header">
       <span class="title header-item">新增权限组</span>
       <el-breadcrumb class="crumbs" separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item>查看统计权限</el-breadcrumb-item>
+        <el-breadcrumb-item to="/manage/index/list">查看统计权限</el-breadcrumb-item>
         <el-breadcrumb-item>新增权限组</el-breadcrumb-item>
       </el-breadcrumb>
     </header>
@@ -15,6 +15,7 @@
             placeholder="请输入权限组名称"
             v-model="input"
             size="mini"
+            maxlength="20"
             clearable>
           </el-input>
           <span class="msg">{{msg}}</span>
@@ -36,6 +37,7 @@
 import { addManage, editManage } from 'oa/api/manage/index'
 const OK_CODE = '200'
 import { mapGetters } from 'vuex'
+import { reg } from 'oa/utils/dom'
 export default {
   data () {
     return {
@@ -59,12 +61,18 @@ export default {
       if (this.input === '') {
         this.msg = '输入不能够为空'
         return
+      } else if (!reg.test(this.input)) {
+        this.msg = '只能够输入中文、英文或者数字'
+        return
       }
       this._addManage()
     },
     save() {
       if (this.input === '') {
         this.msg = '输入不能够为空'
+        return
+      } else if (!reg.test(this.input)) {
+        this.msg = '只能够输入中文、英文或者数字'
         return
       }
       this._editManage()

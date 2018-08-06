@@ -28,7 +28,7 @@
          </el-form-item>
 
         <el-form-item label="新闻标题" prop="title">
-          <el-input class="newstitleInput" v-model="ruleForm.title"></el-input>
+          <el-input class="newstitleInput" v-model="ruleForm.title" maxlength="40"></el-input>
           <span class="newstitleTip">限40个字符内，支持中英文数字</span>
         </el-form-item>
         <el-form-item prop="content" style="width: 80%;">
@@ -61,6 +61,7 @@ import { quillEditor, Quill } from 'vue-quill-editor';
 import { fetchAddNews, modifylist, modifynews, updataUrl } from 'oa/api/statis/news'
 import { mapGetters } from 'vuex'
 import { saveMultiNews, fetchNewsInfo, editMultiNews } from 'oa/api/process/ruxue'
+import { reg } from 'oa/utils/dom'
 const SUCCESS_OK = '200'
   export default {
     components: {
@@ -86,7 +87,7 @@ const SUCCESS_OK = '200'
         ruleForm: {
           cropImg: '',
           title: '',
-          content: '', // 富文本框内容
+          content: '新闻内容', // 富文本框内容
         },
         newsid: false,
         dialogTableVisible: false,
@@ -95,6 +96,7 @@ const SUCCESS_OK = '200'
         rules: {
           title: [
             { required: true, message: '新闻标题不能为空', trigger: 'blur' },
+            { pattern: reg, message: '仅限中英文数字输入' },
             { max: 40, message: '限40个字符内', trigger: 'blur' }
           ],
           cropImg: [
@@ -166,7 +168,7 @@ const SUCCESS_OK = '200'
         console.info(editor)
         editor.enable(true)   // 实现达到上限字符可删除
         if (this.SurplusLengthNum === 2000){
-          editor.enable(false)   // 实现达到上限字符可删除
+          // editor.enable(false)   // 实现达到上限字符可删除
         }
       },
       // 图片上传之前调取的函数
@@ -222,11 +224,11 @@ const SUCCESS_OK = '200'
         } else {
           this.SurplusLengthNum = 0
         }
-        // if (textLength >= _totalNum) {
-        //   this.MessageError('最多输入2000个字符')
-        //   quill.enable(false)
-        //   return
-        // }
+        if (textLength >= _totalNum) {
+          // this.MessageError('最多输入2000个字符')
+          // quill.enable(false)
+          return
+        }
       },
       // 新增 提交
       submitForm(formName) {

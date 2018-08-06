@@ -3,8 +3,8 @@
     <header class="header">
       <span class="title header-item">添加成员</span>
       <el-breadcrumb class="crumbs" separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item>查看统计权限</el-breadcrumb-item>
-        <el-breadcrumb-item>成员管理</el-breadcrumb-item>
+        <el-breadcrumb-item to="/manage/index/list">查看统计权限</el-breadcrumb-item>
+        <el-breadcrumb-item to="/manage/index/member">成员管理</el-breadcrumb-item>
         <el-breadcrumb-item>添加成员</el-breadcrumb-item>
       </el-breadcrumb>
     </header>

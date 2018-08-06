@@ -1,7 +1,7 @@
 // import fetch from 'oa/utils/fetch-notoken'
 import fetch from 'oa/utils/fetch'
 import qs from 'qs'
-import { $HTTP,$LoadHTTP } from 'oa/utils/config'
+import { $HTTP } from 'oa/utils/config'
 // 获取统计数据的列表
 export function fetchnews(newslist) {
   let data = {
@@ -85,4 +85,3 @@ export function modifynews(modifydata){
 
 // 上传图片数据
 export const updataUrl = `${$HTTP}/enroll/Resources/save`
-// export const updataUrl = `${$LoadHTTP}/enroll/Resources/save`

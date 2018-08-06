@@ -15,7 +15,7 @@
       <el-col :span="8">
         <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="150px">
             <el-form-item label="迎新流程名称" prop="enrollName">
-              <el-input type="textarea" v-model="ruleForm.enrollName" placeholder="限20字符中英文数字" auto-complete="off"></el-input>
+              <el-input type="text" v-model="ruleForm.enrollName" placeholder="限20字符中英文数字" auto-complete="off" maxlength="20"></el-input>
             </el-form-item>
           <el-form-item label="迎新年限" prop="enrollYear">
             <template slot-scope="scope">
@@ -63,6 +63,7 @@
 </template>
 <script>
 import { addProcess, editProcess } from 'oa/api/process/ruxue'
+import { checkTeacherId } from 'oa/utils/dom'
 const SUCCESS_OK = "200"
 export default {
   data () {
@@ -80,7 +81,7 @@ export default {
       rules: {
         enrollName: [{
           required: true, message: '迎新流程名称不能为空', trigger: 'blur'
-        }],
+        }, {validator: checkTeacherId, trigger: 'blur'}],
         // year: [{
         //   required: true, message: '迎新年限不能为空', trigger: 'blur'
         // }],
@@ -116,7 +117,6 @@ export default {
                 this.MessageError(res.message)
               }
             }).catch(() => {
-              this.ruleForm.originType = [1,2,3]
               this.MessageError()
               })
           } else {
