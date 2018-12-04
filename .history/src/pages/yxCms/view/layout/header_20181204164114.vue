@@ -48,14 +48,14 @@ export default {
       content ""
       width 1px
       height 20px
-      top 19px
-      right 14px
+      top 16px
+      left 10px
       background #DBE3F1
       position absolute
     color #FFFFFF
+    font-weight bold
     position relative
     padding 20px 30px
-    font-size 15px
   .systemName
     &:before
       content ""

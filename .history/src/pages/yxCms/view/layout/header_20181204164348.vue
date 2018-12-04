@@ -53,9 +53,9 @@ export default {
       background #DBE3F1
       position absolute
     color #FFFFFF
+    font-weight bold
     position relative
     padding 20px 30px
-    font-size 15px
   .systemName
     &:before
       content ""

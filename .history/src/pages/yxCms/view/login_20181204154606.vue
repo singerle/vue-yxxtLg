@@ -18,8 +18,8 @@
           <el-form-item prop="password">
             <div class="option clearfix">
               <span class="option-title">密码</span>
-              <el-input v-model="login.password" :type="inputType" auto-complete="off" @keyup.enter.native="handleLogin" placeholder="密码"></el-input>
-              <img src="static/password-eye.png" @click="showPassword">
+              <el-input v-model="login.password" type="password" auto-complete="off" @keyup.enter.native="handleLogin" placeholder="密码"></el-input>
+              <img src="static/password-eye.png">
             </div>
           </el-form-item>
           <el-form-item>
@@ -58,7 +58,6 @@ export default {
         name: '',
         password: ''
       },
-      inputType: 'password',
       loading: false,
       rules: {
         name: [{required: true, message: '请输入用户名', trigger: 'blur'}],
@@ -67,13 +66,6 @@ export default {
     }
   },
   methods: {
-    showPassword(){
-      if(this.inputType=='password'){
-        this.inputType = 'text'
-      }else {
-        this.inputType = 'password'
-      }
-    },
     handleLogin () {
       this.$refs.login.validate((valid) => {
         console.log(this.$store)
@@ -134,7 +126,6 @@ export default {
     .login-body
       width 1014px
       margin auto
-      box-shadow: -3px 5px 15px #8ab2db
       .content
         float left
         width 507px
@@ -184,7 +175,6 @@ export default {
               float left
               height 25px
               width 12px
-              cursor pointer
       >img
         float left
         width 507px

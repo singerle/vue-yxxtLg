@@ -184,7 +184,6 @@ export default {
               float left
               height 25px
               width 12px
-              cursor pointer
       >img
         float left
         width 507px

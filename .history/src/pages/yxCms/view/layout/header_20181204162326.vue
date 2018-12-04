@@ -1,8 +1,6 @@
 <template>
   <div class="navbar">
     <img src="/yxxt/static/logo.png">
-    <span class="systemName">迎新管理系统</span>
-    <span class="schoolName">重庆理工大学</span>
     <el-dropdown class="el-dropdown">
       <span class="el-dropdown-link">
         <img class="avatar" :src="avatar"/>
@@ -43,43 +41,16 @@ export default {
   background #224B95
   width 100%
   box-shadow 5px 5px 5px #224b95
-  .schoolName
+  >img
     &:after
       content ""
-      width 1px
+      width 5px
       height 20px
-      top 19px
-      right 14px
       background #DBE3F1
       position absolute
-    color #FFFFFF
-    position relative
-    padding 20px 30px
-    font-size 15px
-  .systemName
-    &:before
-      content ""
-      width 1px
-      height 20px
-      top 16px
-      left 10px
-      background #DBE3F1
-      position absolute
-    color #FFFFFF
-    font-weight bold
-    float left
-    position relative
-    padding 20px 30px
-  >img
-    // &:after
-    //   content ""
-    //   width 50px
-    //   height 200px
-    //   background #DBE3F1
-    //   position absolute
     float left
     margin 8px
-    // position relative
+    position relative
   .el-dropdown
     height 60px
     line-height 60px

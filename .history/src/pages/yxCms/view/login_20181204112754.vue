@@ -1,6 +1,7 @@
 <template>
   <div class="login-container">
-    <el-form  :model="login" class="login-form" ref="login" label-position="left" :rules="rules">
+    <img src="static/lg-logo.png">
+    <!-- <el-form  :model="login" class="login-form" ref="login" label-position="left" :rules="rules">
       <h2 class="title">迎新管理系统</h2>
       <div class="container">
         <img class="logo" src="./logo.png" alt="">
@@ -16,7 +17,7 @@
         <el-button type="primary" class="login-btn" style="width:100%" @click.native="handleLogin" :loading="loading">登陆</el-button>
         </el-form-item>
       </div>
-    </el-form>
+    </el-form> -->
   </div>
 </template>
 
@@ -51,7 +52,7 @@ export default {
             } else {
               this.MessageError('用户名或者密码错误')
             }
-          }).catch(() => {
+          }).catch((e) => {
             this.loading = false
           })
         }
@@ -70,7 +71,8 @@ export default {
 <style lang="stylus" scoped>
   .login-container
     height 100vh
-    background #EFEFEF
+    background url('/yxxt/static/login-bg.png') no-repeat
+    background-size cover
     .login-form
       width 400px
       position absolute
