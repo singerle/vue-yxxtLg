@@ -20,11 +20,11 @@
     		</li>
     		<li>
     			<div class="left">陪同人数</div>
-    			<div class="right" @click="ptrs=true">{{obj.ptrs?obj.ptrs:'请选择'}}</div>
+    			<div class="right" @click="ptrs=true">{{computedPtrs}}</div>
     		</li>
     	</ul>
-    	<p style="text-indent: 2em;line-height: 1.4;padding-left: .05rem">
-    		学校将在重庆北站南北广场（龙头寺火车站）、重庆西站（沙坪坝）、菜园坝火车站、重庆理工大学花溪校区大门设立迎新接待站。在其他各车站或飞机场到达的新生可转乘轨道交通等交通工具到就近的任意一个火车站或花溪校区大门接待站，由学校迎新专车送往两江校区。（请注意入学须知上提示的接站时间）
+    	<p style="text-indent: 2em;line-height: 1.4;padding-left: .05rem" v-html="$changetext.bdjt">
+    		<!-- 学校将在重庆北站南北广场（龙头寺火车站）、重庆西站（沙坪坝）、菜园坝火车站、重庆理工大学花溪校区大门设立迎新接待站。在其他各车站或飞机场到达的新生可转乘轨道交通等交通工具到就近的任意一个火车站或花溪校区大门接待站，由学校迎新专车送往两江校区。（请注意入学须知上提示的接站时间） -->
     	</p>
     	<div class="save" @click="handleSave">保存</div>
     	<div class="success" v-show="show">操作成功</div>
@@ -90,6 +90,7 @@ import {setHjStu} from 'student/api/getHjxx'
 				ptrs: false,
 				slots: [],
 				ddsj: '',
+				save:'',
 				obj: {
 					ddsj: "",
 					jtgj: "",
@@ -104,7 +105,17 @@ import {setHjStu} from 'student/api/getHjxx'
 				station: station
 			}
 		},
-		computed: {
+		computed: {	
+			// text(){
+			// 	return this.$changetext
+			// },		
+			computedPtrs(){
+				if(this.obj.ptrs===''){
+					return '请选择'
+				}else{
+					return this.obj.ptrs===0||this.obj.ptrs?this.obj.ptrs:'请选择'
+				}
+			},
 			jtgjSlots() {
 				let gj = []
 				this.station.forEach((r, i) => {
@@ -124,9 +135,17 @@ import {setHjStu} from 'student/api/getHjxx'
 				return [{values: ddzd}]
 			},
 			check(){
+				// let stu=true
+				// for(var key in this.obj){
+				// 	if(!this.obj[key]){
+				// 		console.log(key+'/'+this.obj[key])
+				// 		stu = false
+				// 	}
+				// }
+				// return stu
 				let stu=true
 				for(var key in this.obj){
-					if(!this.obj[key]){
+					if(this.obj[key]===''){
 						console.log(key+'/'+this.obj[key])
 						stu = false
 					}
@@ -134,14 +153,47 @@ import {setHjStu} from 'student/api/getHjxx'
 				return stu
 			}
 		},
-		created(){
+		activated(){
 			getCxblData().then((res) => {
 				if(res.code == '40001'){
+					console.log(res)
 					this.ddsj = new Date(res.content.ddsj).format('yyyy-MM-dd hh:mm')
 					res.content.ddsj =  new Date(res.content.ddsj).format('yyyyMMddhhmm')
 					this.obj = Object.assign(this.obj, res.content)
 				}
 			})
+		},
+		created(){
+			getCxblData().then((res) => {
+				if(res.code == '40001'){console.log(res.content)
+					this.ddsj = new Date(res.content.ddsj).format('yyyy-MM-dd hh:mm')
+					res.content.ddsj =  new Date(res.content.ddsj).format('yyyyMMddhhmm')
+					this.obj = Object.assign(this.obj, res.content)
+					this.save = this.obj.jtgj
+					// this.$nextTick(() => {this.$watch('obj.jtgj', () =>{this.obj.ddz = ''})})
+				}
+				// this.$nextTick(() => {this.$watch('obj.jtgj', () =>{this.obj.ddz = ''})})
+			})
+			// 	this.obj.jtgj  = 111111
+			// 	this.obj.ddz = 222
+			// 	console.log(_)})
+			// this.$nextTick(() => {this.$watch('obj.jtgj', () =>{this.obj.ddz = ''})})
+			// setTimeout(() => {
+			// 	console.log("created")
+			// 	this.obj.jtgj  = 111111
+			// 	this.obj.ddz = 222
+			// },0)
+		},
+		mounted(){
+			// setTimeout(() => {
+			// 	this.$nextTick(() => {this.$watch('obj.jtgj', () =>{
+			// 	console.log("aaaa") 
+			// 	this.obj.ddz = ''})})
+			// },500)
+			// this.$nextTick(() => {this.$watch('obj.jtgj', () =>{this.obj.ddz = ''})})
+			// this.$nextTick(() => {this.$watch('obj.jtgj', () =>{
+			// 	console.log("aaaa") 
+			// 	this.obj.ddz = ''})})
 		},
 		methods:{
 			handleSave() {
@@ -165,6 +217,11 @@ import {setHjStu} from 'student/api/getHjxx'
 			confirm(key){
 				this[key] = false
 				this.obj[key] = this.$refs[key].values[0]
+				if(key=='jtgj'){
+					if(this.save != this.$refs[key].values[0]){
+						this.obj.ddz = ''
+					}
+				}	
 			},
 			showDdz() {
 				if(this.obj.jtgj){

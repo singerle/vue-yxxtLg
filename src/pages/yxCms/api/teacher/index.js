@@ -28,10 +28,11 @@ export function delTeacher(groupId) {
   })
 }
 // 迎新配置  教师办公配置 修改权限组
-export function editTeacher(groupId, newName) {
+export function editTeacher(groupId, newName, processId) {
   let data = {
     groupId,
-    newName
+    newName,
+    processId
   }
   data = qs.stringify(data)
   return fetch({

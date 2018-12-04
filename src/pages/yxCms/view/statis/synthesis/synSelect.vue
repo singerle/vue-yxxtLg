@@ -123,7 +123,7 @@
           res = res.data
           if (res.state === OK_CODE) {
             this.options.majon = res.data.majon // 重置专业
-            this.options.classes = res.data.class // 重置班级
+            this.options.class = res.data.class // 重置班级
             this.option.majon = this.options.majon.length > 0 ? this.options.majon[0].id : ''
             this.option.classes = this.options.class.length > 0 ? this.options.class[0].id :''
           }
@@ -140,8 +140,8 @@
           loading.close()
           res = res.data
           if (res.state === OK_CODE) {
-            this.options.classes = res.data.class // 重置班级
-            this.option.classes = this.options.length > 0 ? this.options.class[0].id : ''
+            this.options.class = res.data.class // 重置班级
+            this.option.classes = this.options.class.length > 0 ? this.options.class[0].id : ''
           }
         }).catch(_ => {
           loading.close()

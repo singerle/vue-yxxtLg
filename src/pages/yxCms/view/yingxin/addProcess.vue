@@ -114,6 +114,12 @@ export default {
                 this.$router.push({path: '/yingxin/process'})
                 this.$refs[formName].resetFields()
               } else {
+                 this.$nextTick(() => {
+                  var begin = this.ruleForm.beginTime.replace(/-/g,'/');
+                  var end = this.ruleForm.endTime.replace(/-/g,'/')
+                  this.ruleForm.beginTime = new Date(begin).getTime()
+                  this.ruleForm.endTime = new Date(end).getTime()
+                })
                 this.MessageError(res.message)
               }
             }).catch(() => {
@@ -127,6 +133,15 @@ export default {
       } else {
         this.$refs[formName].validate((valid) => {
           if (valid) {
+            // const sums = this.ruleForm
+            // console.log(this.ruleForm)
+            var begin = this.$store.getters.processItem
+            // console.log(this.$store.getters.processItem == this.ruleForm)
+            // console.log(this.ruleForm.enrollName==begin.processName&&this.ruleForm.enrollYear==begin.year&&this.ruleForm.beginTime==Date.parse(new Date(begin.creatTime))&&this.ruleForm.endTime==Date.parse(new Date(begin.endTime))&&this.ruleForm.originType==begin.originType&&this.ruleForm.enrollLogicId==begin.enrollLogicId);
+            if(this.ruleForm.enrollName==begin.processName&&this.ruleForm.enrollYear==begin.year&&this.ruleForm.beginTime==Date.parse(new Date(begin.creatTime))&&this.ruleForm.endTime==Date.parse(new Date(begin.endTime))&&this.ruleForm.originType==begin.originType&&this.ruleForm.enrollLogicId==begin.enrollLogicId){
+              this.MessageSuccess("请求成功！")
+              this.$router.push({path: '/yingxin/process'})
+            }else{
             editProcess(this.ruleForm).then(res =>{
               this.ruleForm.originType = [1,2,3]
               res = res.data
@@ -134,19 +149,28 @@ export default {
                 this.MessageSuccess(res.message)
                 this.$router.push({path: '/yingxin/process'})
               } else {
+                this.$nextTick(() => {
+                    // this.ruleForm = sums
+                    // console.log(this.ruleForm)
+                    var begin = this.ruleForm.beginTime.replace(/-/g,'/');
+                    var end = this.ruleForm.endTime.replace(/-/g,'/')
+                    // var str = sum.split(' ')[0].replace(/-/g,'/')+' '+sum.split(' ')[1]
+                    this.ruleForm.beginTime = new Date(begin).getTime()
+                    this.ruleForm.endTime = new Date(end).getTime()
+                  })
                 this.MessageError(res.message)
               }
             }).catch(() => {
               this.ruleForm.originType = [1,2,3]
               this.MessageError()
             })
-          } else {
+          }
+          }else{
             console.log('error submit!!')
             return false
           }
         })
-      }
-      
+      }      
     },
     // 检验时间的大小
     changeStart () {

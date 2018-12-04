@@ -56,12 +56,12 @@ export default {
   methods: {
     // 点击保存按钮
     submit (form) {
-
      this.$refs[form].validate((valid) => {
+       console.log(this.teacherItem)
        // 验证通过
        if (valid) {
          let loading = this.loading()
-         editTeacher(this.teacher.groupId, this.form.authGroupName).then(res => {
+         editTeacher(this.teacher.groupId, this.form.authGroupName, this.teacherItem.enrollLogicId).then(res => {
            loading.close()
            res = res.data
            if (res.state === OK_CODE) {

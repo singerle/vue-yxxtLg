@@ -14,7 +14,7 @@
             <el-form-item label="权限组名称" prop="teacherId">
               <el-row>
                 <el-col :span="6">
-                  <el-input type="text" v-model="form.teacherId" placeholder="请输入权限组名称" auto-complete="off" maxlength="12"></el-input>
+                  <el-input type="text" v-model="form.teacherId" placeholder="请输入权限组名称" auto-complete="off" maxlength="20"></el-input>
                 </el-col>
                 <el-col :span="10" :offset="1"><span style="color:#999999">限20字符内中英文数字</span></el-col>
               </el-row>

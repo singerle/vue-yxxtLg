@@ -97,6 +97,7 @@
 						// formData.append('param',"aadfsdf")
 						//formData.param = encodeURI(value)
 						// console.log(formData.param);
+						console.log(formData)
 						sendWsxxData(formData).then((res) => {
 							console.log(res);
 							if(res.code === '40001'){
@@ -122,7 +123,7 @@
 								this.container = []
 								this.save = []
 							}else{
-								this.errorMessage = "请检查其他页面信息是否填写完整"
+								this.errorMessage = res.message
 								this.FisShow=!this.FisShow
 								var timer = null
 								timer = setTimeout(()=>{

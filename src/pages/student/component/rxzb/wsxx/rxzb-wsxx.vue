@@ -35,7 +35,7 @@
 				</p> -->
 <!-- 				<p><span>QQ/微信</span><input placeholder="请点击输入" v-model="qq"></input><span @click="qq=''"></span></p>
 				<p><span>电子邮箱</span><input placeholder="请点击输入" v-model="email"></input><span @click="email=''"></span></p>
- -->			</div>
+ -->		</div>
 		</div>
 		<div class="second">
 			<div class="content">
@@ -488,14 +488,14 @@ import {getWsxxcxData} from 'student/api/wsxx.js'
 				// console.log(this.jtdz!='');
 				// console.log(this.xzz!='');
 				// console.log(this.xh!='');
-
+				console.log(this.obj.hkszd)
 				if(xzzybYz&&jtybYz&&jtdhYz&&qqYz&&sjhYz&&dzyjYz&&this.pickerValue!=flag&&this.pickerValue!=''&&this.obj.hkszd!=flag&&this.obj.hkszd!=''&&this.csd!=''&&this.jtdz!=''&&this.xzz!=''){
 					this.page1 = `{"grxx":{"qq":"${this.qq}","dzyj":"${this.dzyj}","hkszd":"${this.obj.hkszd}","jtdz":"${this.jtdz}","csd":"${this.csd}","lxdh":"${this.lxdh}","jtdh":"${this.jtdh}","jtyb":"${this.jtyb}","xzzyb":"${this.xzzyb}","xzz":"${this.xzz}"},`
 					//提交当前页的内容到vuex的store中保存，state为wsxxPage1
 					// console.log(this.page1)
 					this.$store.commit("savewsxxPage1",this.page1)
 					this.$router.push("/wsxxQsxx")
-					// console.log(this.$store.state.wsxxPage1)
+					console.log(this.$store.state.wsxxPage1)
 				}else{
 					// console.log(this.obj.hkszd);
 					if(this.csd==''){

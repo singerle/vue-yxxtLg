@@ -17,7 +17,7 @@
           <quill-editor class="quill-editor" ref="myQuillEditor"
             v-model="ruleForm.content" :options="editorOption"  @change="onEditorChange($event)" @focus="onEditorFocus($event)"></quill-editor>
           <!-- <div class="limit">当前已输入 <span>{{nowLengthNum}}</span> 个字符，您还可以输入 <span>{{SurplusLengthNum}}</span> 个字符。</div> -->
-          <div class="limit" style="border:none"></div>
+          <div class="limit" style="border:0"></div>
           <!-- 文件上传input 将它隐藏-->
           <el-upload class="upload-demo" :action="qnLocation" :before-upload='beforeUpload' :data="uploadData" :on-success='upScuccess'
             ref="upload" style="display:none">

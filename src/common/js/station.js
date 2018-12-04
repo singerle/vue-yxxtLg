@@ -35,6 +35,9 @@ const station = [
 			{name: '重庆江北国际机场-T2A航站楼'},
 			{name: '重庆江北国际机场-T2B航站楼'},
 			{name: '重庆江北国际机场-T3航站楼'},
+			]},
+		{name:'自驾',children: [
+			{name: '两江校区大门口'}
 			]}
 		]
 export default station
