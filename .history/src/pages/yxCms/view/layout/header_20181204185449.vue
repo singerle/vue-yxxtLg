@@ -32,7 +32,7 @@ export default {
   },
   mounted(){
     if(this.avatar.substring(this.avatar.length-4)=='null'){
-      this.isavatar = 'static/person.png'
+      this.isavatar = 'static/'
     }else {
       this.isavatar = this.avatar
     }

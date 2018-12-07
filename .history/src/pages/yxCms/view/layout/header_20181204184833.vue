@@ -30,13 +30,6 @@ export default {
       'avatar'
     ])
   },
-  mounted(){
-    if(this.avatar.substring(this.avatar.length-4)=='null'){
-      this.isavatar = 'static/person.png'
-    }else {
-      this.isavatar = this.avatar
-    }
-  },
   methods: {
     logout () {
       this.$store.dispatch('FedLogout').then(() => {
