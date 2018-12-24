@@ -32,7 +32,7 @@ export default {
       cols: [],
       rows: [],
       total: 10,
-      display: 10,
+      display: 12,
       currentPage: 1,
       options: {}
     }
@@ -62,7 +62,8 @@ export default {
     // 点击导出
     downExcel() {
       let loading = this.loading()
-      downBusin(this.options, this.currentPage, this.display, '1').then(res => {
+      // downBusin(this.options, this.currentPage, this.display, '1').then(res => {
+      downBusin(this.options, 1, this.total, '1').then(res => {
         loading.close()
         let fileName = '业务数据统计.xls'
        //这里res.data是返回的blob对象    

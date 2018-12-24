@@ -3,7 +3,7 @@ import store from '@/vuex/store/index'
 import { MessageBox, Message } from 'element-ui'
 const instance = axios.create({
   baseURL: process.env.BASE_API,
-  timeout: 120000,
+  timeout: 60000,
   // responseType: 'arraybuffer'
   responseType: 'blob'
 })
