@@ -120,6 +120,7 @@ export default {
 	    init(){
 	  		getCxzt().then((res) => {
 	  			if(res.code == '40001'){
+						console.log(res)
 	  				this.bxxx = res.content.bxxx
 	  				this.gmzt = res.content.gmzt.gmzt
 	  				this.$store.commit('saveqsxx', {qsxm: res.content.gmzt.fq||res.content.gmzt.mq, jzdh: res.content.gmzt.jzdh})

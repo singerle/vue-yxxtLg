@@ -1,5 +1,5 @@
 <template>
-  <div class="synthesis-wrapper">
+  <div class="Dsynthesis-wrapper">
     <header class="header">
       <span class="title header-item h-left">业务数据查询</span>
       <span class="btn-excel header-item h-right" @click="downExcel">导出excel</span>
@@ -21,6 +21,8 @@
 import businessSelect from './business/businessSelect'
 import businessContent from './business/businessContent'
 import { fetchBusin, downBusin } from 'oa/api/statis/bus'
+import { Loading } from 'element-ui'
+// import downLoading from 'oa/utils/downLoading'
 import { mapMutations } from 'vuex'
 const OK_CODE = '200'
 export default {
@@ -61,10 +63,18 @@ export default {
     },
     // 点击导出
     downExcel() {
-      let loading = this.loading()
+      
+      let load = Loading.service({
+          lock: true,
+          text: '正在导出，数据过多，请耐心等待！',
+          spinner: 'el-icon-loading',
+          background: 'rgba(0, 0, 0, 0.7)',
+          customClass: 'downLoad'
+        })
+      // let load = downLoading()
       // downBusin(this.options, this.currentPage, this.display, '1').then(res => {导出当前页表格
       downBusin(this.options, 1, this.total, '1').then(res => {//导出筛选出来的所有内容
-        loading.close()
+        load.close()
         let fileName = '业务数据统计.xls'
        //这里res.data是返回的blob对象    
         var blob = new Blob([res.data],  { type: 'application/x-xls' });  
@@ -88,7 +98,7 @@ export default {
         //     window.URL.revokeObjectURL(link.href);
         // }
       }).catch(() => {
-        loading.close()
+        load.close()
       })
     },
     handleCurrentChange() {
@@ -106,9 +116,9 @@ export default {
 </script>
 
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 @import '~oa/style/variable'
-.synthesis-wrapper
+.Dsynthesis-wrapper
   padding 0 11px
   box-sizing border-box
   width 100%
@@ -136,4 +146,10 @@ export default {
     margin-top 10px
   .footer
     text-align right 
+.downLoad
+  .el-loading-spinner
+    font-size 40px !important
+  .el-loading-text
+    font-size 20px !important
+    font-weight bold !important
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="navbar">
-    <img src="/yxxt/static/logo.png">
+    <img src="static/logo.png">
     <span class="systemName">迎新管理系统</span>
     <span class="schoolName">重庆理工大学</span>
     <el-dropdown class="el-dropdown">
